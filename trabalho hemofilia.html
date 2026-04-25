@@ -1,0 +1,1390 @@
+<html>
+<html>
+
+<head>
+
+    <title>Dia Mundial da Hemofilia</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,600&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --vermelho: #c0152a;
+            --vermelho-escuro: #8b0d1e;
+            --vermelho-claro: #e84057;
+            --vermelho-suave: #fce8eb;
+            --creme: #faf8f6;
+            --cinza: #f2f0ee;
+            --texto: #1e1a1b;
+            --texto-suave: #5c5255;
+            --branco: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--creme);
+            color: var(--texto);
+            overflow-x: hidden;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(10, 5, 6, 0.93);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(192, 21, 42, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 17%;
+            height: 68px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .nav-logo-img {
+            width: 34px;
+            height: 42px;
+            flex-shrink: 0;
+        }
+
+        .nav-logo-text {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            font-size: 0.88rem;
+            color: var(--branco);
+            letter-spacing: 0.04em;
+            line-height: 1.3;
+        }
+
+        .nav-logo-text span {
+            display: block;
+            font-weight: 300;
+            font-size: 0.68rem;
+            color: #e88a97;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.65);
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: color 0.2s;
+            position: relative;
+            padding-bottom: 3px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--vermelho-claro);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--branco);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active-link {
+            color: var(--branco);
+        }
+
+        .nav-links a.active-link::after {
+            width: 100%;
+        }
+
+        /* PAGES */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            background: #0d0508;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            padding: 0 17%;
+        }
+
+        .hero-particles {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50% 50% 60% 40% / 70% 70% 30% 30%;
+            background: var(--vermelho);
+            opacity: 0;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.5);
+            }
+
+            10% {
+                opacity: 0.13;
+            }
+
+            90% {
+                opacity: 0.06;
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(100vh) scale(1.3);
+            }
+        }
+
+        .hero-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(ellipse, rgba(192, 21, 42, 0.2) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-logo-wrap {
+            margin-bottom: 2.5rem;
+            animation: heroIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .hero-logo-big {
+            width: 110px;
+            filter: drop-shadow(0 0 40px rgba(192, 21, 42, 0.8));
+        }
+
+        .hero-tag {
+            font-size: 0.7rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--vermelho-claro);
+            font-weight: 500;
+            margin-bottom: 1.2rem;
+            animation: heroIn 1s 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 8vw, 6.2rem);
+            font-weight: 700;
+            color: var(--branco);
+            line-height: 0.95;
+            margin-bottom: 1.5rem;
+            animation: heroIn 1s 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .hero-title em {
+            font-style: italic;
+            color: var(--vermelho-claro);
+        }
+
+        .hero-date {
+            display: inline-block;
+            background: var(--vermelho);
+            color: var(--branco);
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            padding: 0.55rem 2rem;
+            margin-bottom: 2rem;
+            animation: heroIn 1s 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .hero-desc {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.55);
+            font-weight: 300;
+            max-width: 520px;
+            line-height: 1.85;
+            margin: 0 auto 3rem;
+            animation: heroIn 1s 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: var(--vermelho);
+            color: var(--branco);
+            text-decoration: none;
+            padding: 1rem 2.5rem;
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            animation: heroIn 1s 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .btn-primary:hover {
+            background: var(--vermelho-escuro);
+            transform: translateY(-2px);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+            color: rgba(255, 255, 255, 0.25);
+            font-size: 0.63rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            animation: bounce 2.5s infinite;
+        }
+
+        .hero-scroll svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        @keyframes heroIn {
+            from {
+                opacity: 0;
+                transform: translateY(40px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0)
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(8px)
+            }
+        }
+
+        /* PAGE BANNER */
+        .page-banner {
+            min-height: 42vh;
+            background: #0d0508;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 17% 3.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, rgba(192, 21, 42, 0.18), transparent 70%);
+            pointer-events: none;
+        }
+
+        .page-tag {
+            font-size: 0.68rem;
+            letter-spacing: 0.38em;
+            text-transform: uppercase;
+            color: var(--vermelho-claro);
+            margin-bottom: 1rem;
+        }
+
+        .page-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.4rem, 6vw, 4.2rem);
+            font-weight: 700;
+            color: var(--branco);
+            line-height: 1;
+        }
+
+        .page-title em {
+            font-style: italic;
+            color: var(--vermelho-claro);
+        }
+
+        /* SECTIONS */
+        .section {
+            padding: 6rem 17%;
+        }
+
+        .section-alt {
+            background: var(--cinza);
+        }
+
+        .section-dark {
+            background: #0d0508;
+            color: var(--branco);
+        }
+
+        .section-red {
+            background: var(--vermelho);
+            color: var(--branco);
+        }
+
+        .label {
+            display: inline-block;
+            font-size: 0.67rem;
+            font-weight: 600;
+            letter-spacing: 0.38em;
+            text-transform: uppercase;
+            color: var(--vermelho);
+            margin-bottom: 1rem;
+        }
+
+        .section-dark .label {
+            color: var(--vermelho-claro);
+        }
+
+        .section-red .label {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 3.8vw, 3rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title em {
+            font-style: italic;
+            color: var(--vermelho);
+        }
+
+        .section-dark .section-title em {
+            color: var(--vermelho-claro);
+        }
+
+        .body-text {
+            font-size: 0.98rem;
+            line-height: 1.88;
+            color: var(--texto-suave);
+            font-weight: 300;
+        }
+
+        .body-text+.body-text {
+            margin-top: 1rem;
+        }
+
+        .section-dark .body-text {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* TWO-COL */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .two-col.reverse {
+            direction: rtl;
+        }
+
+        .two-col.reverse>* {
+            direction: ltr;
+        }
+
+        /* VISUAL BOX */
+        .visual-box {
+            background: var(--vermelho-escuro);
+            border-radius: 2px;
+            aspect-ratio: 1/1.08;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .visual-box::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 30% 30%, rgba(255, 255, 255, 0.06), transparent 60%);
+        }
+
+        .vb-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 8rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.05);
+            position: absolute;
+            bottom: -0.5rem;
+            right: 1rem;
+            line-height: 1;
+        }
+
+        /* STATS */
+        .stat-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+            margin-top: 3rem;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            transition: background 0.3s;
+        }
+
+        .stat-box:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--vermelho-claro);
+            line-height: 1;
+        }
+
+        .stat-desc {
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.45);
+            margin-top: 0.5rem;
+            line-height: 1.55;
+            font-weight: 300;
+        }
+
+        /* CARDS */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .card {
+            background: var(--branco);
+            border: 1px solid #ece8e9;
+            padding: 2.2rem 1.8rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--vermelho);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08);
+        }
+
+        .card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.22rem;
+            font-weight: 700;
+            color: var(--texto);
+            margin-bottom: 0.7rem;
+        }
+
+        .card p {
+            font-size: 0.88rem;
+            line-height: 1.78;
+            color: var(--texto-suave);
+            font-weight: 300;
+        }
+
+        /* TIPOS */
+        .tipos {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .tipo-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tipo-letter {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 7rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.04);
+            position: absolute;
+            top: -1rem;
+            right: 1rem;
+            line-height: 1;
+        }
+
+        .tipo-badge {
+            background: var(--vermelho);
+            color: var(--branco);
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 0.28rem 0.8rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .tipo-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: var(--branco);
+            margin-bottom: 0.8rem;
+        }
+
+        .tipo-desc {
+            font-size: 0.88rem;
+            line-height: 1.78;
+            color: rgba(255, 255, 255, 0.58);
+            font-weight: 300;
+        }
+
+        /* TIMELINE */
+        .timeline {
+            position: relative;
+            margin-top: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: rgba(192, 21, 42, 0.3);
+        }
+
+        .tl-item {
+            position: relative;
+            padding: 0 0 2.5rem 2.8rem;
+        }
+
+        .tl-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .tl-dot {
+            position: absolute;
+            left: -5px;
+            top: 5px;
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: var(--vermelho);
+            border: 2px solid var(--cinza);
+        }
+
+        .tl-year {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--vermelho);
+            margin-bottom: 0.3rem;
+        }
+
+        .tl-text {
+            font-size: 0.92rem;
+            line-height: 1.78;
+            color: var(--texto-suave);
+            font-weight: 300;
+        }
+
+        /* TRATAMENTO LIST */
+        .treat-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .treat-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.2rem;
+            padding: 1.2rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+            font-size: 0.93rem;
+            line-height: 1.72;
+            color: rgba(255, 255, 255, 0.65);
+            font-weight: 300;
+        }
+
+        .treat-list li:last-child {
+            border-bottom: none;
+        }
+
+        .treat-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: var(--vermelho-claro);
+            line-height: 1.1;
+            flex-shrink: 0;
+        }
+
+        /* QUOTE */
+        .quote-section {
+            background: var(--vermelho-suave);
+            padding: 5rem 17%;
+            text-align: center;
+        }
+
+        .quote-section blockquote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.4rem, 2.8vw, 2rem);
+            font-style: italic;
+            color: var(--vermelho-escuro);
+            line-height: 1.65;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .quote-section blockquote::before {
+            content: '"';
+            display: block;
+            font-size: 5rem;
+            color: var(--vermelho);
+            line-height: 0.8;
+            margin-bottom: 1rem;
+            font-style: normal;
+        }
+
+        .quote-author {
+            margin-top: 1.5rem;
+            font-size: 0.72rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--vermelho);
+            font-weight: 600;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #080305;
+            padding: 4rem 17%;
+            border-top: 1px solid rgba(192, 21, 42, 0.2);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--branco);
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-brand-desc {
+            font-size: 0.83rem;
+            color: rgba(255, 255, 255, 0.38);
+            line-height: 1.75;
+            font-weight: 300;
+        }
+
+        .footer-col-title {
+            font-size: 0.66rem;
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--vermelho-claro);
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-col-list {
+            list-style: none;
+        }
+
+        .footer-col-list li {
+            font-size: 0.83rem;
+            color: rgba(255, 255, 255, 0.45);
+            padding: 0.35rem 0;
+            font-weight: 300;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .footer-col-list li:hover {
+            color: var(--branco);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            font-size: 0.76rem;
+            color: rgba(255, 255, 255, 0.28);
+            font-weight: 300;
+        }
+
+        .footer-bottom strong {
+            color: rgba(255, 255, 255, 0.55);
+            font-weight: 500;
+        }
+
+        /* REVEAL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(26px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* RESPONSIVE */
+        @media(max-width:960px) {
+            nav {
+                padding: 0 6%;
+            }
+
+            .hero,
+            .section,
+            .quote-section,
+            .page-banner {
+                padding-left: 6%;
+                padding-right: 6%;
+            }
+
+            footer {
+                padding: 3rem 6%;
+            }
+
+            .two-col {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .two-col.reverse {
+                direction: ltr;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-strip {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .tipos {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .nav-links {
+                gap: 1.3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <a class="nav-logo" onclick="showPage('home')" href="#home">
+            <svg class="nav-logo-img" viewBox="0 0 80 100" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <radialGradient id="ng" cx="38%" cy="30%" r="65%">
+                        <stop offset="0%" stop-color="#e84057" />
+                        <stop offset="100%" stop-color="#8b0d1e" />
+                    </radialGradient>
+                </defs>
+                <path d="M40 4C40 4,6 50,6 67C6 86,22 98,40 98C58 98,74 86,74 67C74 50,40 4,40 4Z" fill="url(#ng)" />
+                <path d="M27 57C27 57,22 68,30 77" stroke="rgba(255,255,255,0.45)" stroke-width="3.5"
+                    stroke-linecap="round" fill="none" />
+            </svg>
+            <div class="nav-logo-text">
+                HEMOFILIA
+                <span>Dia Mundial · 17 de Abril</span>
+            </div>
+        </a>
+        <ul class="nav-links">
+            <li><a id="link-home" onclick="showPage('home')" href="#home" class="active-link">Início</a></li>
+            <li><a id="link-sobre" onclick="showPage('sobre')" href="#sobre">O que é</a></li>
+            <li><a id="link-tratamento" onclick="showPage('tratamento')" href="#tratamento">Tratamento</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- ══ PÁGINA 1: HOME ══ -->
+    <div id="page-home" class="page active">
+
+        <section class="hero">
+            <div class="hero-particles" id="particles"></div>
+            <div class="hero-glow"></div>
+
+            <div class="hero-logo-wrap">
+                <svg class="hero-logo-big" viewBox="0 0 80 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <radialGradient id="hg" cx="38%" cy="28%" r="65%">
+                            <stop offset="0%" stop-color="#e84057" />
+                            <stop offset="60%" stop-color="#c0152a" />
+                            <stop offset="100%" stop-color="#5e0913" />
+                        </radialGradient>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="3" result="blur" />
+                            <feMerge>
+                                <feMergeNode in="blur" />
+                                <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    <path d="M40 3C40 3,5 50,5 68C5 87,21 98,40 98C59 98,75 87,75 68C75 50,40 3,40 3Z" fill="url(#hg)"
+                        filter="url(#glow)" />
+                    <path d="M24 56C24 56,19 68,28 77" stroke="rgba(255,255,255,0.42)" stroke-width="4.5"
+                        stroke-linecap="round" fill="none" />
+                    <ellipse cx="52" cy="38" rx="9" ry="13" fill="rgba(255,255,255,0.06)"
+                        transform="rotate(-22,52,38)" />
+                </svg>
+            </div>
+
+            <p class="hero-tag">17 de Abril &nbsp;·&nbsp; Conscientização Global</p>
+            <h1 class="hero-title">Dia Mundial<br />da <em>Hemofilia</em></h1>
+            <div class="hero-date">17 de Abril</div>
+            <p class="hero-desc">Uma data para iluminar vidas, ampliar o acesso ao tratamento e celebrar a resiliência
+                de milhões que convivem com distúrbios da coagulação sanguínea.</p>
+            <button class="btn-primary" onclick="showPage('sobre')">
+                Saiba mais
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+            </button>
+            <div class="hero-scroll">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <path d="M12 5v14M5 12l7 7 7-7" />
+                </svg>
+                Rolar
+            </div>
+        </section>
+
+        <section class="section reveal">
+            <div class="two-col">
+                <div>
+                    <span class="label">A Doença</span>
+                    <h2 class="section-title">O que é a<br /><em>Hemofilia?</em></h2>
+                    <p class="body-text">A hemofilia é um distúrbio genético raro que compromete a capacidade do sangue
+                        de coagular. Quem tem hemofilia pode sangrar por mais tempo após uma lesão e, em casos graves,
+                        apresentar sangramentos espontâneos nas articulações e músculos.</p>
+                    <p class="body-text">É causada pela deficiência ou ausência de fatores de coagulação — proteínas
+                        essenciais que atuam como "agentes de reparo" do organismo após qualquer lesão vascular.</p>
+                    <button class="btn-primary" style="margin-top:2rem;font-size:0.78rem;padding:0.85rem 2rem;"
+                        onclick="showPage('sobre')">Ver mais →</button>
+                </div>
+                <div class="visual-box"><span class="vb-number">01</span></div>
+            </div>
+        </section>
+
+        <section class="section section-dark">
+            <p class="label">Números Globais</p>
+            <h2 class="section-title reveal">Hemofilia <em>em dados</em></h2>
+            <div class="stat-strip reveal">
+                <div class="stat-box">
+                    <div class="stat-num">400k+</div>
+                    <div class="stat-desc">pessoas com hemofilia no mundo</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num">1/5.000</div>
+                    <div class="stat-desc">nascidos do sexo masculino com Hemofilia A</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num">75%</div>
+                    <div class="stat-desc">dos casos sem diagnóstico ou tratamento</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num">1963</div>
+                    <div class="stat-desc">fundação da Federação Mundial de Hemofilia</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-alt">
+            <p class="label reveal">Por que conscientizar</p>
+            <h2 class="section-title reveal">A importância do <em>Dia Mundial</em></h2>
+            <div class="cards">
+                <div class="card reveal" style="transition-delay:.05s">
+                    <div class="card-icon"></div>
+                    <h3>Herança Genética</h3>
+                    <p>A hemofilia é transmitida pelo cromossomo X, afetando predominantemente homens. A mãe portadora
+                        transmite o gene alterado a 50% dos filhos homens.</p>
+                </div>
+                <div class="card reveal" style="transition-delay:.15s">
+                    <div class="card-icon"></div>
+                    <h3>Acesso ao Tratamento</h3>
+                    <p>No Brasil, o tratamento é garantido pelo SUS — referência global em políticas públicas para
+                        hemofilia. No mundo, milhões ainda carecem de qualquer acesso.</p>
+                </div>
+                <div class="card reveal" style="transition-delay:.25s">
+                    <div class="card-icon"></div>
+                    <h3>Movimento Global</h3>
+                    <p>A WFH (Federação Mundial de Hemofilia) coordena esforços em mais de 140 países para melhorar
+                        diagnóstico, tratamento e qualidade de vida.</p>
+                </div>
+            </div>
+        </section>
+
+    </div><!-- /home -->
+
+
+    <!-- ══ PÁGINA 2: SOBRE ══ -->
+    <div id="page-sobre" class="page">
+
+        <section class="page-banner">
+            <div>
+                <p class="page-tag">Página 2 — Informação</p>
+                <h1 class="page-title">O que é a<br /><em>Hemofilia?</em></h1>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="two-col">
+                <div class="visual-box reveal" style="background:#1e0a0f;"><span class="vb-number">A</span></div>
+                <div class="reveal" style="transition-delay:.2s">
+                    <span class="label">Definição</span>
+                    <h2 class="section-title">Entendendo a <em>condição</em></h2>
+                    <p class="body-text">A hemofilia é uma doença hemorrágica hereditária causada pela deficiência de
+                        fatores de coagulação. O sangue contém 13 fatores que, ao serem ativados em cascata, formam um
+                        coágulo para estancar sangramentos.</p>
+                    <p class="body-text">Quando um ou mais fatores estão ausentes ou insuficientes, o processo de
+                        coagulação é comprometido — levando a sangramentos prolongados ou espontâneos, especialmente em
+                        articulações e músculos.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-dark">
+            <p class="label">Classificação</p>
+            <h2 class="section-title reveal">Os <em>tipos</em> de Hemofilia</h2>
+            <div class="tipos reveal">
+                <div class="tipo-card"><span class="tipo-letter">A</span><span class="tipo-badge">80% dos casos</span>
+                    <div class="tipo-name">Hemofilia A</div>
+                    <p class="tipo-desc">Deficiência do fator VIII. Mais prevalente, afeta ~1 em cada 5.000 nascimentos
+                        do sexo masculino. Sintomas variam de leve a grave conforme o nível de atividade do fator.</p>
+                </div>
+                <div class="tipo-card"><span class="tipo-letter">B</span><span class="tipo-badge">Doença de
+                        Christmas</span>
+                    <div class="tipo-name">Hemofilia B</div>
+                    <p class="tipo-desc">Deficiência do fator IX. Ocorre em ~1 em cada 25.000 nascimentos. Clinicamente
+                        semelhante à tipo A, tratada com reposição do fator deficiente específico.</p>
+                </div>
+                <div class="tipo-card"><span class="tipo-letter">C</span><span class="tipo-badge">Menos comum</span>
+                    <div class="tipo-name">Hemofilia C</div>
+                    <p class="tipo-desc">Deficiência do fator XI. Afeta ambos os sexos. Sangramentos geralmente mais
+                        leves e frequentemente relacionados a procedimentos cirúrgicos ou traumas.</p>
+                </div>
+                <div class="tipo-card"><span class="tipo-letter">+</span><span class="tipo-badge">Formas raras</span>
+                    <div class="tipo-name">Distúrbios Relacionados</div>
+                    <p class="tipo-desc">Incluem deficiências de outros fatores e a Doença de von Willebrand — o
+                        distúrbio hemorrágico hereditário mais comum, afetando homens e mulheres.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <p class="label reveal">Sinais & Diagnóstico</p>
+            <h2 class="section-title reveal">Como a hemofilia <em>se manifesta?</em></h2>
+            <div class="cards">
+                <div class="card reveal" style="transition-delay:.0s">
+                    <div class="card-icon"></div>
+                    <h3>Hemartroses</h3>
+                    <p>Sangramentos nas articulações (joelhos, tornozelos, cotovelos) são o sintoma mais característico.
+                        Causam dor intensa e, se recorrentes, danos articulares permanentes.</p>
+                </div>
+                <div class="card reveal" style="transition-delay:.1s">
+                    <div class="card-icon"></div>
+                    <h3>Hematomas Profundos</h3>
+                    <p>Sangramentos musculares formam grandes hematomas, frequentemente na coxa, panturrilha e antebraço
+                        — podendo comprimir nervos e vasos sanguíneos próximos.</p>
+                </div>
+                <div class="card reveal" style="transition-delay:.2s">
+                    <div class="card-icon"></div>
+                    <h3>Sangramento Prolongado</h3>
+                    <p>Após cortes, extrações dentárias ou cirurgias, o sangramento dura muito mais do que o esperado.
+                        Pequenos traumas podem se tornar sérios para pessoas com hemofilia.</p>
+                </div>
+                <div class="card reveal" style="transition-delay:.3s">
+                    <div class="card-icon"></div>
+                    <h3>Sangramento Espontâneo</h3>
+                    <p>Em casos graves, sangramentos podem ocorrer sem causa aparente. Quando no sistema nervoso
+                        central, representam emergência médica imediata.</p>
+                </div>
+                <div class="card reveal" style="transition-delay:.4s">
+                    <div class="card-icon"></div>
+                    <h3>Diagnóstico</h3>
+                    <p>Realizado por exames laboratoriais (TTPA, TP) e dosagem dos fatores de coagulação. O diagnóstico
+                        precoce é essencial para iniciar profilaxia e prevenir complicações.</p>
+                </div>
+                <div class="card reveal" style="transition-delay:.5s">
+                    <div class="card-icon"></div>
+                    <h3>Hereditariedade</h3>
+                    <p>Hemofilia A e B são ligadas ao cromossomo X. Mulheres portadoras têm 50% de chance de transmitir
+                        o gene. Filhos homens terão a doença; filhas serão portadoras.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="quote-section reveal">
+            <blockquote>O diagnóstico precoce e o acesso ao tratamento são os pilares que transformam a vida de uma
+                pessoa com hemofilia, permitindo que ela viva de forma plena e ativa.</blockquote>
+            <p class="quote-author">— Federação Mundial de Hemofilia (WFH)</p>
+        </div>
+
+        <section class="section section-alt">
+            <p class="label reveal">Linha do Tempo</p>
+            <h2 class="section-title reveal">Marcos na <em>história da hemofilia</em></h2>
+            <div class="timeline">
+                <div class="tl-item reveal">
+                    <div class="tl-dot"></div>
+                    <div class="tl-year">Séc. II d.C.</div>
+                    <p class="tl-text">O Talmude babilônico já descrevia meninos que sangravam excessivamente após
+                        circuncisão — provavelmente os primeiros registros históricos da hemofilia.</p>
+                </div>
+                <div class="tl-item reveal">
+                    <div class="tl-dot"></div>
+                    <div class="tl-year">1803</div>
+                    <p class="tl-text">John Conrad Otto publica a primeira descrição científica da hemofilia,
+                        identificando seu caráter hereditário e predomínio em pessoas do sexo masculino.</p>
+                </div>
+                <div class="tl-item reveal">
+                    <div class="tl-dot"></div>
+                    <div class="tl-year">1952</div>
+                    <p class="tl-text">Pesquisadores identificam a Hemofilia B como entidade distinta da A — batizando-a
+                        "Doença de Christmas" em referência ao primeiro paciente descrito.</p>
+                </div>
+                <div class="tl-item reveal">
+                    <div class="tl-dot"></div>
+                    <div class="tl-year">1963</div>
+                    <p class="tl-text">Fundação da WFH em Montreal por Frank Schnabel. A data do seu aniversário, 17 de
+                        abril, torna-se o Dia Mundial da Hemofilia.</p>
+                </div>
+                <div class="tl-item reveal">
+                    <div class="tl-dot"></div>
+                    <div class="tl-year">1989</div>
+                    <p class="tl-text">A OMS reconhece oficialmente o Dia Mundial da Hemofilia, ampliando globalmente a
+                        conscientização sobre distúrbios de coagulação sanguínea.</p>
+                </div>
+                <div class="tl-item reveal">
+                    <div class="tl-dot"></div>
+                    <div class="tl-year">Hoje</div>
+                    <p class="tl-text">Terapias gênicas em desenvolvimento prometem ser curativas. Novos medicamentos de
+                        ação prolongada reduzem infusões e melhoram a qualidade de vida.</p>
+                </div>
+            </div>
+        </section>
+
+    </div><!-- /sobre -->
+
+
+    <!-- ══ PÁGINA 3: TRATAMENTO ══ -->
+    <div id="page-tratamento" class="page">
+
+        <section class="page-banner">
+            <div>
+                <p class="page-tag">Página 3 — Cuidado & Ciência</p>
+                <h1 class="page-title">Tratamento &<br /><em>Qualidade de Vida</em></h1>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="two-col">
+                <div class="reveal">
+                    <span class="label">Tratamento</span>
+                    <h2 class="section-title">Como tratar a <em>hemofilia?</em></h2>
+                    <p class="body-text">O principal tratamento é a reposição do fator de coagulação deficiente — de
+                        forma preventiva (profilaxia) ou em resposta a sangramentos (tratamento sob demanda). A medicina
+                        avançou com fatores recombinantes de longa duração e novos agentes não-fatoriais.</p>
+                    <p class="body-text">No Brasil, o Ministério da Saúde fornece gratuitamente o concentrado de fator
+                        via SUS, tornando o país referência global em políticas públicas para hemofilia.</p>
+                </div>
+                <div class="visual-box reveal" style="transition-delay:.2s;background:#1a0609;"><span
+                        class="vb-number">Rx</span></div>
+            </div>
+        </section>
+
+        <section class="section section-dark">
+            <p class="label">Modalidades Terapêuticas</p>
+            <h2 class="section-title reveal">Abordagens de <em>tratamento</em></h2>
+            <ul class="treat-list reveal">
+                <li><span class="treat-num">01</span>
+                    <div><strong style="color:var(--branco);">Profilaxia</strong><br />Infusões regulares do fator para
+                        prevenir sangramentos espontâneos. Padrão-ouro do tratamento — especialmente em crianças, pois
+                        previne danos articulares irreversíveis.</div>
+                </li>
+                <li><span class="treat-num">02</span>
+                    <div><strong style="color:var(--branco);">Tratamento Sob Demanda</strong><br />Administração do
+                        fator apenas quando ocorre sangramento. Ainda amplamente usado em países de menor renda por
+                        limitações de acesso e custo.</div>
+                </li>
+                <li><span class="treat-num">03</span>
+                    <div><strong style="color:var(--branco);">Fatores de Longa Duração</strong><br />Versões modificadas
+                        com meia-vida estendida, permitindo infusões semanais ou quinzenais — melhorando adesão e
+                        qualidade de vida significativamente.</div>
+                </li>
+                <li><span class="treat-num">04</span>
+                    <div><strong style="color:var(--branco);">Agentes Não-Fatoriais</strong><br />O emicizumabe
+                        (Hemlibra) imita a função do fator VIII por via subcutânea. Revolução para pacientes com
+                        inibidores, eliminando a necessidade de acesso venoso.</div>
+                </li>
+                <li><span class="treat-num">05</span>
+                    <div><strong style="color:var(--branco);">Terapia Gênica</strong><br />Em fase avançada, promete
+                        corrigir o defeito genético permanentemente — representando a primeira perspectiva de cura
+                        efetiva para Hemofilia A e B.</div>
+                </li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <p class="label reveal">Vida com Hemofilia</p>
+            <h2 class="section-title reveal">Vivendo com <em>qualidade de vida</em></h2>
+            <div class="cards">
+                <div class="card reveal" style="transition-delay:.0s">
+                    <div class="card-icon"></div>
+                    <h3>Atividade Física</h3>
+                    <p>Com tratamento adequado, é possível e recomendado praticar exercícios. Natação, ciclismo e
+                        caminhada fortalecem os músculos que protegem as articulações.</p>
+                </div>
+                <div class="card reveal" style="transition-delay:.1s">
+                    <div class="card-icon"></div>
+                    <h3>Saúde Mental</h3>
+                    <p>O suporte psicológico é parte fundamental do cuidado integral. Conviver com uma condição crônica
+                        pode impactar autoestima — o apoio emocional faz toda a diferença.</p>
+                </div>
+                <div class="card reveal" style="transition-delay:.2s">
+                    <div class="card-icon"></div>
+                    <h3>Escola & Trabalho</h3>
+                    <p>Com profilaxia eficaz, crianças e adultos participam normalmente da vida escolar e profissional.
+                        Adaptações simples no ambiente reduzem riscos sem segregar.</p>
+                </div>
+                <div class="card reveal" style="transition-delay:.3s">
+                    <div class="card-icon"></div>
+                    <h3>Grupos de Apoio</h3>
+                    <p>Associações como a ABHH oferecem suporte, informação e advocacy. A comunidade é fonte de força,
+                        troca de experiências e conquistas de direitos.</p>
+                </div>
+                <div class="card reveal" style="transition-delay:.4s">
+                    <div class="card-icon"></div>
+                    <h3>Equipe Multidisciplinar</h3>
+                    <p>Hematologista, fisioterapeuta, psicólogo e assistente social nos CTHs (Centros de Tratamento de
+                        Hemofilia) garantem cuidado integral e especializado.</p>
+                </div>
+                <div class="card reveal" style="transition-delay:.5s">
+                    <div class="card-icon"></div>
+                    <h3>Tecnologia & Inovação</h3>
+                    <p>Apps de registro de sangramentos e telemedicina facilitam o controle da doença e a comunicação
+                        com a equipe de saúde, especialmente em regiões remotas.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-red" style="text-align:center;">
+            <p class="label reveal">Junte-se à causa</p>
+            <h2 class="section-title reveal" style="color:var(--branco);max-width:560px;margin:0 auto 1.5rem;">
+                Conscientize. Apoie.<br />Transforme vidas.</h2>
+            <p class="body-text reveal"
+                style="color:rgba(255,255,255,0.82);max-width:480px;margin:0 auto 2.5rem;transition-delay:.1s;">No Dia
+                Mundial da Hemofilia, use vermelho, compartilhe informação e ajude a quebrar o ciclo de invisibilidade
+                desta condição. Cada voz pode salvar uma vida.</p>
+            <div class="reveal"
+                style="transition-delay:.2s;display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;">
+                <a href="https://www.wfh.org" target="_blank"
+                    style="background:var(--branco);color:var(--vermelho);text-decoration:none;padding:.9rem 2.2rem;font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:transform .2s;"
+                    onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">WFH ·
+                    Site Oficial</a>
+                <a href="https://www.abhh.org.br" target="_blank"
+                    style="background:transparent;color:var(--branco);text-decoration:none;padding:.9rem 2.2rem;font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border:2px solid rgba(255,255,255,0.55);transition:all .2s;"
+                    onmouseover="this.style.borderColor='#fff'"
+                    onmouseout="this.style.borderColor='rgba(255,255,255,0.55)'">ABHH · Brasil</a>
+            </div>
+        </section>
+
+    </div><!-- /tratamento -->
+
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <div class="footer-brand-name">🩸 Dia Mundial da Hemofilia</div>
+                <p class="footer-brand-desc">17 de Abril — Uma data para conscientizar, ampliar o diagnóstico e garantir
+                    que toda pessoa com hemofilia tenha acesso ao tratamento que merece.</p>
+            </div>
+            <div>
+                <p class="footer-col-title">Navegação</p>
+                <ul class="footer-col-list">
+                    <li onclick="showPage('home')">Início</li>
+                    <li onclick="showPage('sobre')">O que é Hemofilia</li>
+                    <li onclick="showPage('tratamento')">Tratamento & Vida</li>
+                </ul>
+            </div>
+            <div>
+                <p class="footer-col-title">Integrantes · UCB</p>
+                <ul class="footer-col-list">
+                    <li>Arthur Bandeira de Souza</li>
+                    <li>Ângelo Gadelha Silva</li>
+                    <li>Davi Andrade Cirino</li>
+                    <li style="margin-top:.8rem;color:rgba(255,255,255,0.28);cursor:default;">Universidade
+                        Católica<br />de Brasília — UCB</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p><strong>UCB</strong> · Universidade Católica de Brasília</p>
+            <p>Arthur Bandeira · Ângelo Gadelha · Davi Andrade · 2025</p>
+        </div>
+    </footer>
+
+    <script>
+        // NAVEGAÇÃO
+        function showPage(id) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('page-' + id).classList.add('active');
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active-link'));
+            const lnk = document.getElementById('link-' + id);
+            if (lnk) lnk.classList.add('active-link');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            setTimeout(triggerReveals, 120);
+        }
+
+        // PARTÍCULAS
+        (function () {
+            const c = document.getElementById('particles');
+            if (!c) return;
+            for (let i = 0; i < 20; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                const s = Math.random() * 12 + 5;
+                p.style.cssText = `width:${s}px;height:${s * 1.35}px;left:${Math.random() * 100}%;animation-duration:${Math.random() * 9 + 6}s;animation-delay:${Math.random() * 9}s;`;
+                c.appendChild(p);
+            }
+        })();
+
+        // SCROLL REVEAL
+        function triggerReveals() {
+            const items = document.querySelectorAll('.page.active .reveal');
+            const obs = new IntersectionObserver(entries => {
+                entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+            }, { threshold: 0.1 });
+            items.forEach(el => { el.classList.remove('visible'); obs.observe(el); });
+        }
+        triggerReveals();
+
+        // Previne scroll em links #
+        document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => e.preventDefault()));
+    </script>
+</body>
+
+</html>
